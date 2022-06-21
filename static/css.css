@@ -45,10 +45,11 @@ body {
   .menu-logo{
     position: relative;
     width: 5%;
-    padding-top: 20%;
+    /*padding-top: 20%;*/
     min-width: 40px;
     height: auto;
     bottom: 10%;
+    top: 10%;
   }
   
   .foto {
