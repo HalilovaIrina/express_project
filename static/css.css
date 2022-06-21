@@ -120,7 +120,7 @@ body {
     position: relative;
     padding-top: 20px;
     width: 100%;
-    height:240px;
+    /* height:240px; */
   }
   
   .main-content> img {
@@ -224,7 +224,7 @@ body {
     text-align: center;
     /* max-width: 1352px; */
     margin: auto;
-    color: white;
+    color: rgb(6, 6, 6);
   }
   
   .footer {
