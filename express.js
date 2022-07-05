@@ -1,31 +1,29 @@
-import express from 'express'
-import path from 'path'
+import settings from './config/index.js';
+import express from "express";
+import path from "path";
 import fs from "fs";
-import pgp from "pg-promise"
+import pgp from "pg-promise";
 
-const __dirname = path.resolve()
-const app = express()
-const PORT = process.env.PORT ?? 3000
-
+const __dirname = path.resolve();
+const app = express();
+const PORT = settings.PORT;
 const test = pgp(/*options*/)
-const db = test("postgres://irina:topsecret@localhost:5432/testdb")
+const db = test(settings.DB_CONNECTION_STRING)
 
-db.one("SELECT $1 AS value", 123)
-    .then(function (data) {
-        console.log("DATA:", data.value);
-    })
-    .catch(function (error) {
-        console.log("ERROR:", error);
-    });
-
-
+app.use(express.json())
 app.use(express.static(path.join(__dirname, "static")));
 
 app.get("/", function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'static', 'index.html'))
+  res.sendFile(path.resolve(__dirname, "static", "index.html"));
 });
 
+app.use(express.json())
+app.use(express.static(path.join(__dirname, "static")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.resolve(__dirname, "static", "index.html"));
+});
 
 app.listen(PORT, () => {
-    console.log(`Server has been started on port ${PORT}`)
-})
+  console.log(`Server has been started on port ${PORT}`);
+});
